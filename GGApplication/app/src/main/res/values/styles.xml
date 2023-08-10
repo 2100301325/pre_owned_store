@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
+        <!-- 设置背景颜色 -->
+        <item name="android:background">#F3720D</item>
+    </style>
+</resources>
