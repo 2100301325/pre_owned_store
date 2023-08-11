@@ -21,7 +21,7 @@
             android:layout_height="100dp"
             android:layout_margin="16dp"
             android:layout_weight="1"
-            android:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="16dp"
             app:cardElevation="10dp"
             app:cardMaxElevation="20dp">
@@ -92,7 +92,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="170dp"
                 android:layout_height="90dp"
-                android:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="10dp"
                 app:cardMaxElevation="20dp">
@@ -149,7 +149,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="153dp"
                 android:layout_height="90dp"
-                android:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="10dp"
                 app:cardMaxElevation="20dp">
@@ -228,7 +228,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="我的订单"
-                    android:textSize="18dp">
+                    android:textSize="18dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
