@@ -67,7 +67,8 @@
             app:backgroundTint="@color/yellow"
             app:borderWidth="0dp"
             app:elevation="12dp"
-            app:fabSize="normal" />
+            app:fabSize="normal"
+            app:tint="@color/white"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
