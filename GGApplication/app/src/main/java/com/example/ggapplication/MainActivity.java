@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.fragment_container, new HomeFragment());
         ft.commit();
-        System.out.println("sb");
+
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

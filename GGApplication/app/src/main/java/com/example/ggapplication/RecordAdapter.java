@@ -53,12 +53,16 @@ public class RecordAdapter extends BaseAdapter {
         TextView descriptionTextView = convertView.findViewById(R.id.descriptionTextView);
         TextView priceTextView = convertView.findViewById(R.id.priceTextView);
 
-        Glide.with(context).load(record.getAvatar()).into(imageView);
+        if(record.getAvatar()==null){
+            Glide.with(context).load(R.drawable.car).into(imageView);
+        }
+        else {
+        Glide.with(context).load(record.getAvatar()).into(imageView);}
 
 
         descriptionTextView.setText(record.getContent().substring(0, Math.min(20, record.getContent().length())));
 
-        priceTextView.setText(String.valueOf(record.getPrice()));
+        priceTextView.setText("￥"+ record.getPrice());
 
         return convertView;
     }

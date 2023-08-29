@@ -52,6 +52,7 @@
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
                 android:fillViewport="true">
 
                 <LinearLayout
@@ -59,12 +60,192 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="这是一个TextView"
-                        android:textSize="18sp"
-                        android:padding="16dp" />
+                        android:orientation="vertical"
+                        android:layout_height="150dp"
+                        android:background="@color/white"
+                        android:layout_margin="4dp"
+                        >
+                        <!-- 第一行图标 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:orientation="horizontal"
+                            android:layout_weight="1">
+
+                            <!-- 第一行的四个图标，每个图标的宽度为match_parent除以4 -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                >
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/mphone" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/black"
+                                    android:text="手机" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                >
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/mchao" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/black"
+                                    android:text="奢侈品" />
+                            </LinearLayout>
+                            <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            >
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/mbook" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/black"
+                                android:text="图书" />
+                        </LinearLayout>
+                            <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            >
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/mgame" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/black"
+                                android:text="游戏" />
+                        </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <!-- 第二行图标 -->
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:orientation="horizontal"
+                            android:layout_weight="1">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                >
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/mfood" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/black"
+                                    android:text="美食" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                >
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/mplay" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/black"
+                                    android:text="潮玩" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                >
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/mcao" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/black"
+                                    android:text="美妆" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                >
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/mother" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/black"
+                                    android:text="其它" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                        <!-- 第二行图标末尾-->
+
+
+                    </LinearLayout>
 
                     <com.example.ggapplication.MyGridView
                         android:id="@+id/mygrid"

@@ -1,5 +1,6 @@
 package com.example.ggapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.ggapplication.data.Record;
@@ -35,7 +38,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
 private List<Record> records;
     private RecordAdapter adapter;
@@ -111,6 +114,14 @@ private List<Record> records;
         }).start();
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Record record= (Record) adapter.getItem(position);
+        Intent intent=new Intent(getActivity(),DetailActivity.class);
+        intent.putExtra("id",record.getId());
+        startActivity(intent);
+    }
+
 
     /**
      * http响应体的封装协议
@@ -163,6 +174,18 @@ private List<Record> records;
         adapter = new RecordAdapter(getContext(), new ArrayList<>());
         gridView.setAdapter(adapter);
         get();
+        gridView.setOnItemClickListener(this::onItemClick);
+
+
+
+
+
+
+
+
+
+
+
 
         return rootView;
     }
