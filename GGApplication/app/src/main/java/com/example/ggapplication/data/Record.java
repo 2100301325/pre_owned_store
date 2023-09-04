@@ -1,10 +1,14 @@
 package com.example.ggapplication.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Record {
     private String id;
     private String appKey;
+    @SerializedName("content")
+    private String content;
 
     public int getAppIsShare() {
         return appIsShare;
@@ -135,8 +139,11 @@ public class Record {
     }
 
     private String tUserId;
+    @SerializedName("imageCode")
     private String imageCode;
-    private String content;
+
+    @SerializedName("price")
+
     private double price;
     private String addr;
     private int typeId;
@@ -145,6 +152,7 @@ public class Record {
     private String createTime;
     private String username;
     private String avatar;
+    @SerializedName("imageUrlList")
     private List<String> imageUrlList;
     private int appIsShare;
     private String tuserId;
@@ -153,6 +161,7 @@ public class Record {
         return "Record{" +
                 "id='" + id + '\'' +
                 ", appKey='" + appKey + '\'' +
+                ", price='" + price + '\'' +
                 // 将你想要显示的属性逐个添加进来
                 '}';
     }

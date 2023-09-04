@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
-
-
+import android.os.Handler;
+import android.os.Looper;
 import android.os.NetworkOnMainThreadException;
 
 import android.util.Log;
@@ -19,6 +19,9 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
+import com.example.ggapplication.data.Data;
 import com.example.ggapplication.data.Record;
 import com.example.ggapplication.data.YourResponseModel;
 import com.google.gson.Gson;
@@ -26,9 +29,16 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -41,13 +51,13 @@ import okhttp3.Response;
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
 private List<Record> records;
+private Data data;
     private RecordAdapter adapter;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
     }
 
@@ -86,25 +96,28 @@ private List<Record> records;
                         // 获取响应体的json串
                         String body = response.body().string();
                         Log.d("info", body);
-                        // 解析json串到自己封装的状态
-                      //  ResponseBody<Object> dataResponseBody = gson.fromJson(body,jsonType);
-                     //   Log.d("info", dataResponseBody.toString());
-
                         YourResponseModel responseModel = gson.fromJson(body, YourResponseModel.class);
-
-                         records = responseModel.getData().getRecords();
-                        for (Record record : records) {
-                            System.out.println("这是图片"+record.getAvatar());
-                        }
-
-
-                        getActivity().runOnUiThread(new Runnable() {
+                         records.addAll(responseModel.getData().getRecords());
+                        handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                adapter.setData(records); // 设置新数据
+                            // 设置新数据
                                 adapter.notifyDataSetChanged(); // 通知适配器数据变化
                             }
                         });
+
+
+
+
+
+//                        getActivity().runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//
+//                                adapter.notifyDataSetChanged();
+//                                // 通知适配器数据变化
+//                            }
+//                        });
 
                     }
                 });
@@ -118,7 +131,18 @@ private List<Record> records;
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Record record= (Record) adapter.getItem(position);
         Intent intent=new Intent(getActivity(),DetailActivity.class);
-        intent.putExtra("id",record.getId());
+        intent.putExtra("sid",record.getId());
+        intent.putExtra("sellid",record.getTuserId());
+        intent.putExtra("price",record.getPrice());
+        intent.putExtra("con",record.getContent());
+        if(record.getImageUrlList() != null && !record.getImageUrlList().isEmpty()) {
+            intent.putExtra("pul",record.getImageUrlList().get(0));
+        }
+
+
+
+
+
         startActivity(intent);
     }
 
@@ -171,8 +195,9 @@ private List<Record> records;
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
         GridView gridView = rootView.findViewById(R.id.mygrid);
-        adapter = new RecordAdapter(getContext(), new ArrayList<>());
-        gridView.setAdapter(adapter);
+        records=new ArrayList<>();
+       adapter = new RecordAdapter(getContext(), records);
+       gridView.setAdapter(adapter);
         get();
         gridView.setOnItemClickListener(this::onItemClick);
 

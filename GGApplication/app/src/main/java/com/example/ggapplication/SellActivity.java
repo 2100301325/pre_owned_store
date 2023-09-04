@@ -7,11 +7,15 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.NetworkOnMainThreadException;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,10 +24,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.ggapplication.data.SellResponseModel;
+import com.example.ggapplication.data.YourResponseModel;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -37,10 +46,14 @@ import okhttp3.Response;
 
 public class SellActivity extends AppCompatActivity {
     private ImageView imageView;
-    private Button selectImageButton;
-    private Button sc;
+
+    private Button bc;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri selectedImageUri;
+    private String mycode;
+    private Button fb;
+    private EditText con;
+    private EditText pri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +63,98 @@ public class SellActivity extends AppCompatActivity {
             // 如果没有权限，请求权限
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_IMAGE_REQUEST);
         }
-
-
         imageView = findViewById(R.id.imageView);
-        selectImageButton = findViewById(R.id.selectImageButton);
-        sc=findViewById(R.id.sc);
+        bc=findViewById(R.id.baoc);
+        fb=findViewById(R.id.fabu);
+        con=findViewById(R.id.cont);
+        pri=findViewById(R.id.pri);
+        imageView.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
 
-        sc.setOnClickListener(v -> {
+        });
+        fb.setOnClickListener(view -> {
+            new Thread(() -> {
+                Gson gson =new Gson();
+                // url路径
+                String url = "http://47.107.52.7:88/member/tran/goods/add";
+                MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
+                Map<String, Object> bodyMap = new HashMap<>();
+                bodyMap.put("price", pri.getText().toString());
+                bodyMap.put("imageCode", mycode);
+                bodyMap.put("typeName", "手机");
+                bodyMap.put("typeId", 1);
+                bodyMap.put("addr", "桂林市灵川县灵田镇桂电");
+                bodyMap.put("userId", 70);
+                bodyMap.put("content", con.getText().toString());
+                // 将Map转换为字符串类型加入请求体中
+                String body = gson.toJson(bodyMap);
+
+                //请求组合创建
+                Request request = new Request.Builder()
+                        .url(url)
+                        // 将请求头加至请求中
+                        .addHeader("appId","231203e144a84d3197e91c792d6ed81b")
+                        .addHeader("appSecret", "10557616300ac1c6d465191061d82db65f838")
+                        .addHeader("Accept", "application/json, text/plain, */*")
+                        .post(RequestBody.create(MEDIA_TYPE_JSON, body))
+                        .build();
+                try {
+
+                    OkHttpClient client = new OkHttpClient();
+                    //发起请求，传入callback进行回调
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            System.out.println("失败");
+                            e.printStackTrace();
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            Gson gson=new Gson();
+
+                            // Type jsonType = new TypeToken<ResponseBody<Object>>(){}.getType();
+                            // 获取响应体的json串
+                            String body = response.body().string();
+                            Log.d("info", body);
+                            ResponseBody responseModel = gson.fromJson(body,ResponseBody.class);
+                            if(responseModel.getCode()==200){
+
+                                Intent intent=new Intent(SellActivity.this,MainActivity.class);
+                                startActivity(intent);
+
+
+                            }
+
+
+
+
+
+
+
+
+                        }
+                    });
+                }catch (NetworkOnMainThreadException ex){
+                    ex.printStackTrace();
+                }
+            }).start();
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+        bc.setOnClickListener(v -> {
 
             new Thread(() -> {
                 // 服务器接口 URL
@@ -99,8 +197,12 @@ public class SellActivity extends AppCompatActivity {
 
                         @Override
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            Gson gson=new Gson();
                             String body = response.body().string();
                             System.out.println("成功图片"+body);
+                            SellResponseModel responseModel = gson.fromJson(body, SellResponseModel.class);
+                           mycode= responseModel.getData().getImageCode();
+                            System.out.println("我的code"+mycode);
                         }
                     });
                 } catch (NetworkOnMainThreadException ex) {
@@ -128,11 +230,6 @@ public class SellActivity extends AppCompatActivity {
         String filePath = cursor.getString(column_index);
         cursor.close();
         return filePath;
-    }
-
-    public void selectImage(View view) {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
     // 处理选择图片后的结果

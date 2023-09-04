@@ -61,7 +61,8 @@
                         android:id="@+id/my_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="昵称"
+                        android:text="昵称："
+                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <!-- 下面的文字 -->
@@ -69,7 +70,8 @@
                         android:id="@+id/my_province"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="来自"
+                        android:textColor="@color/black"
+                        android:text="爱睡觉的一个人"
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -128,13 +130,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="￥"
+                            android:textColor="#FF5722"
+
                             android:textSize="18sp" />
 
                         <TextView
                             android:id="@+id/my_money"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="钱"
+                            android:text="100"
+                            android:textColor="#FF5722"
                             android:textSize="18sp" />
                     </LinearLayout>
                     <Space
@@ -146,6 +151,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="账户余额"
+                        android:textColor="@color/black"
                         android:textSize="18sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -193,6 +199,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="8"
+                        android:textColor="@color/black"
                         android:textSize="18sp" />
 
                     <Space
@@ -204,6 +211,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="优惠券"
+                        android:textColor="@color/black"
                         android:textSize="18sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
