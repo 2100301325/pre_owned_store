@@ -5,6 +5,6 @@
             android:startColor="#FFC24D"
             android:endColor="#FFFFFF"
             android:type="linear"
-            android:angle="60" /> <!-- 角度控制渐变方向，90度为从上到下 -->
+            android:angle="270" /> <!-- 角度控制渐变方向，90度为从上到下 -->
     </shape>
 

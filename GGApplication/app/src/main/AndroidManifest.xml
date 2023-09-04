@@ -20,6 +20,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -53,6 +54,10 @@
         <activity android:name=".SellActivity">
 
         </activity>
+        <activity android:name=".RegisterActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

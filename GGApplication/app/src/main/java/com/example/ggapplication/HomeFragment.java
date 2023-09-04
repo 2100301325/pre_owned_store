@@ -26,9 +26,16 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -46,8 +53,6 @@ private List<Record> records;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
     }
 
@@ -93,9 +98,7 @@ private List<Record> records;
                         YourResponseModel responseModel = gson.fromJson(body, YourResponseModel.class);
 
                          records = responseModel.getData().getRecords();
-                        for (Record record : records) {
-                            System.out.println("这是图片"+record.getAvatar());
-                        }
+
 
 
                         getActivity().runOnUiThread(new Runnable() {
