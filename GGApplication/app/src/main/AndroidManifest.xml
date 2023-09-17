@@ -54,6 +54,10 @@
         <activity android:name=".SellActivity">
 
         </activity>
+        <activity android:name=".RegisterActivity">
+
+        </activity>
+
     </application>
 
 </manifest>
