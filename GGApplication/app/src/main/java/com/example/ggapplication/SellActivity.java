@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.ggapplication.data.SellResponseModel;
+import com.example.ggapplication.data.User;
 import com.example.ggapplication.data.YourResponseModel;
 import com.google.gson.Gson;
 
@@ -85,7 +86,7 @@ public class SellActivity extends AppCompatActivity {
                 bodyMap.put("typeName", "手机");
                 bodyMap.put("typeId", 1);
                 bodyMap.put("addr", "桂林市灵川县灵田镇桂电");
-                bodyMap.put("userId", 70);
+                bodyMap.put("userId", User.getId());
                 bodyMap.put("content", con.getText().toString());
                 // 将Map转换为字符串类型加入请求体中
                 String body = gson.toJson(bodyMap);

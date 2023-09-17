@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.example.ggapplication.data.Data;
 import com.example.ggapplication.data.Record;
+import com.example.ggapplication.data.User;
 import com.example.ggapplication.data.YourResponseModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -65,7 +66,7 @@ private Data data;
         new Thread(() -> {
 
             // url路径
-            String url = "http://47.107.52.7:88/member/tran/goods/all?userId=70&&size=10";
+            String url = "http://47.107.52.7:88/member/tran/goods/all?size=20&&userId="+User.getId();
 
 
             //请求组合创建

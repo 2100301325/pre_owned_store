@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:src="@drawable/toux" />
+            android:src="@drawable/mkong" />
         <!-- 新增一个水平的 LinearLayout 包装下面两个 TextView -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,6 +118,7 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/myai"
             android:layout_width="1dp"
             android:layout_height="60dp"
             android:layout_marginStart="15dp"
@@ -148,6 +149,7 @@
             android:layout_marginEnd="15dp"
             android:layout_weight="4"
             android:backgroundTint="@color/yellow"
+            android:id="@+id/buy"
             app:cardCornerRadius="15dp">
             <LinearLayout
                 android:layout_width="match_parent"
