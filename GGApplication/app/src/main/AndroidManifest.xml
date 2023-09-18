@@ -57,6 +57,9 @@
         <activity android:name=".RegisterActivity">
 
         </activity>
+        <activity android:name=".OrderDetailsActivity">
+
+        </activity>
 
     </application>
 

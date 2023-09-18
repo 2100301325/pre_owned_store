@@ -56,6 +56,7 @@ public class DetailActivity extends AppCompatActivity {
         imageView2=findViewById(R.id.ai);
         imageView3=findViewById(R.id.fanhui);
         cardView2=findViewById(R.id.buy);
+
         imageView3.setOnClickListener(view -> {
 
             Intent intent = new Intent(DetailActivity.this, MainActivity.class);

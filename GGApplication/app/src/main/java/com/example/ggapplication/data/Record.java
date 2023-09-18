@@ -166,4 +166,14 @@ public class Record {
                 '}';
     }
 
+    public String getGoodsDescription() {
+        return goodsDescription;
+    }
+
+    public void setGoodsDescription(String goodsDescription) {
+        this.goodsDescription = goodsDescription;
+    }
+
+    private String goodsDescription;
+
 }
