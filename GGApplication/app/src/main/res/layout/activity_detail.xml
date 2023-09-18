@@ -16,6 +16,7 @@
 
 
         <ImageView
+            android:id="@+id/fanhui"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:scaleType="centerInside"

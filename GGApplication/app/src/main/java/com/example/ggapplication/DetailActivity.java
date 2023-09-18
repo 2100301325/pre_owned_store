@@ -43,6 +43,7 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView imageView2;
     private CardView cardView;
     private CardView cardView2;
+    private ImageView imageView3;
     private  Gson gson = new Gson();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,14 @@ public class DetailActivity extends AppCompatActivity {
         textViewp=findViewById(R.id.pro_price);
         cardView=findViewById(R.id.myai);
         imageView2=findViewById(R.id.ai);
+        imageView3=findViewById(R.id.fanhui);
         cardView2=findViewById(R.id.buy);
+        imageView3.setOnClickListener(view -> {
+
+            Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+            startActivity(intent);
+
+        });
         cardView.setOnClickListener(view -> {
             if (isImage1) {
                 imageView2.setImageResource(R.drawable.loving); // 切换到其他图片
