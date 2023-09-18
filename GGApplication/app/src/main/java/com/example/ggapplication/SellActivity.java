@@ -204,6 +204,12 @@ public class SellActivity extends AppCompatActivity {
                             SellResponseModel responseModel = gson.fromJson(body, SellResponseModel.class);
                            mycode= responseModel.getData().getImageCode();
                             System.out.println("我的code"+mycode);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(SellActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     });
                 } catch (NetworkOnMainThreadException ex) {
